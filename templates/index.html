@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VeRi Explorer</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">VeRi Explorer</div>
+      <button class="nav-btn active" data-page="dashboard">Dashboard</button>
+      <button class="nav-btn" data-page="images">Image Explorer</button>
+      <button class="nav-btn" data-page="extract">Feature Extraction</button>
+      <button class="nav-btn" data-page="jobs">Extraction Jobs</button>
+      <div class="sidebar-footer">
+        <label>Dataset Root</label>
+        <input id="datasetRootInput" type="text">
+        <button id="saveRootBtn">Save Path</button>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section id="page-dashboard" class="page active">
+        <div class="page-header">
+          <div>
+            <h1>Dashboard</h1>
+            <p>Overview of VeRi dataset and feature extraction</p>
+          </div>
+          <button class="secondary" id="refreshDashboard">Refresh</button>
+        </div>
+        <div class="cards">
+          <div class="card"><h3>Total Images</h3><div class="big" id="totalImages">0</div><p id="splitCounts">Train: 0 | Query: 0 | Test: 0</p></div>
+          <div class="card"><h3>Total Vehicles</h3><div class="big" id="totalVehicles">0</div></div>
+          <div class="card"><h3>Total Cameras</h3><div class="big" id="totalCameras">0</div></div>
+          <div class="card"><h3>Features Extracted</h3><div class="big" id="featurePercent">0.0%</div><p id="featureCount">0 / 0 images</p></div>
+        </div>
+        <div class="card full"><h3>Recent Jobs</h3><div id="recentJobs"></div></div>
+      </section>
+
+      <section id="page-images" class="page">
+        <div class="page-header">
+          <div>
+            <h1>Image Explorer</h1>
+            <p>Browse, filter, and search vehicle images</p>
+          </div>
+          <button class="secondary" id="refreshImages">Refresh</button>
+        </div>
+        <div class="grid-two">
+          <div class="card filters">
+            <h3>Filters</h3>
+            <label>Split</label>
+            <select id="imgSplit"><option value="train">Train</option><option value="query">Query</option><option value="test">Test</option></select>
+            <label>Vehicle ID</label>
+            <input id="vehicleId" placeholder="e.g. 0001">
+            <label>Camera ID</label>
+            <input id="cameraId" placeholder="e.g. c001">
+            <label>Has Features</label>
+            <select id="hasFeatures"><option value="any">Any</option><option value="yes">Yes</option><option value="no">No</option></select>
+            <button id="applyFilters">Apply</button>
+          </div>
+          <div>
+            <div class="image-toolbar">
+              <div id="imagesFound">Found 0 images</div>
+              <div>
+                <button class="secondary" id="prevPage">Previous</button>
+                <span id="pageInfo">Page 1</span>
+                <button class="secondary" id="nextPage">Next</button>
+              </div>
+            </div>
+            <div id="imageGrid" class="image-grid"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="page-extract" class="page">
+        <div class="page-header">
+          <div>
+            <h1>Feature Extraction</h1>
+            <p>Extract CNN features from images for re-identification</p>
+          </div>
+        </div>
+        <div class="card extractor">
+          <h3>Configure Extraction Job</h3>
+          <label>Model</label>
+          <div class="radio-grid">
+            <label><input type="radio" name="model" value="resnet50" checked> resnet50</label>
+            <label><input type="radio" name="model" value="resnet18"> resnet18</label>
+            <label><input type="radio" name="model" value="mobilenet_v2"> mobilenet_v2</label>
+            <label><input type="radio" name="model" value="mobilenet_v3_small"> mobilenet_v3_small</label>
+          </div>
+          <label>Target Split</label>
+          <div class="radio-row">
+            <label><input type="radio" name="target_split" value="train" checked> Train</label>
+            <label><input type="radio" name="target_split" value="query"> Query</label>
+            <label><input type="radio" name="target_split" value="test"> Test</label>
+          </div>
+          <label>Custom Vehicle IDs (comma-separated, optional)</label>
+          <input id="customIds" placeholder="0001,0002,0123">
+          <label>Batch Size</label>
+          <input id="batchSize" type="number" min="1" value="32">
+          <button id="startExtraction">Start Extraction</button>
+          <pre id="extractResult"></pre>
+        </div>
+      </section>
+
+      <section id="page-jobs" class="page">
+        <div class="page-header">
+          <div>
+            <h1>Extraction Jobs</h1>
+            <p>History of feature extraction runs</p>
+          </div>
+          <button class="secondary" id="refreshJobs">Refresh</button>
+        </div>
+        <div class="card full"><div id="jobsList"></div></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

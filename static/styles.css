@@ -1,0 +1,146 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; background: #f4f6fb; color: #16213e; }
+.layout { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
+.sidebar { background: #fff; border-right: 1px solid #dfe4ef; padding: 24px 16px; display: flex; flex-direction: column; gap: 12px; }
+.brand { font-size: 32px; font-weight: 700; color: #2e63e6; margin-bottom: 12px; }
+.nav-btn, button, select, input { border-radius: 12px; }
+.nav-btn { border: none; background: transparent; padding: 14px 16px; text-align: left; font-size: 18px; cursor: pointer; }
+.nav-btn.active { background: #2e63e6; color: #fff; }
+.sidebar-footer { margin-top: auto; display: grid; gap: 8px; }
+.content { padding: 32px; }
+.page { display: none; }
+.page.active { display: block; }
+.page-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+h1 { margin: 0 0 8px 0; font-size: 56px; }
+p { margin: 0; color: #5b6d8a; }
+.cards { display: grid; grid-template-columns: repeat(2, minmax(260px, 1fr)); gap: 20px; }
+.card { background: #fff; border: 1px solid #dde3f0; border-radius: 22px; padding: 24px; box-shadow: 0 2px 8px rgba(15, 23, 42, .05); }
+.card.full { margin-top: 20px; }
+.big { font-size: 52px; font-weight: 700; color: #2e63e6; margin: 12px 0; }
+button { border: 1px solid #cfd7e8; background: #2e63e6; color: #fff; padding: 12px 18px; cursor: pointer; font-size: 16px; }
+button.secondary { background: #fff; color: #16213e; }
+.grid-two { display: grid; grid-template-columns: 320px 1fr; gap: 20px; }
+.filters { display: grid; gap: 10px; align-content: start; }
+input, select { border: 1px solid #cfd7e8; padding: 12px 14px; font-size: 16px; width: 100%; }
+.image-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.image-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.img-card { background: #fff; border-radius: 18px; border: 1px solid #dde3f0; overflow: hidden; }
+.img-card img { width: 100%; height: 170px; object-fit: cover; display: block; background: #e7ecf7; }
+.img-meta { padding: 12px; font-size: 14px; line-height: 1.5; }
+.extractor { max-width: 980px; display: grid; gap: 14px; }
+.radio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.radio-grid label, .radio-row label { background: #f8faff; border: 1px solid #cfd7e8; padding: 16px; display: block; }
+.radio-row { display: flex; gap: 12px; flex-wrap: wrap; }
+pre { background: #0f172a; color: #dbeafe; padding: 16px; border-radius: 16px; white-space: pre-wrap; }
+.job-item { padding: 14px 0; border-bottom: 1px solid #e6ebf4; }
+.job-item:last-child { border-bottom: none; }
+.muted { color: #6b7280; }
+@media (max-width: 1000px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { border-right: none; border-bottom: 1px solid #dfe4ef; }
+  .cards, .grid-two, .radio-grid { grid-template-columns: 1fr; }
+  h1 { font-size: 38px; }
+}
+
+
+.logo {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2e63e6;
+  margin-bottom: 20px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nav-link {
+  display: block;
+  text-decoration: none;
+  padding: 14px 16px;
+  border-radius: 12px;
+  color: #16213e;
+  font-size: 18px;
+  background: transparent;
+}
+
+.nav-link.active {
+  background: #2e63e6;
+  color: #fff;
+}
+
+.main {
+  padding: 32px;
+}
+
+.topbar {
+  margin-bottom: 20px;
+}
+
+.topbar h2 {
+  margin: 0 0 8px 0;
+  font-size: 42px;
+  color: #16213e;
+}
+
+.topbar p {
+  margin: 0;
+  color: #5b6d8a;
+}
+
+.primary-btn {
+  border: 1px solid #cfd7e8;
+  background: #2e63e6;
+  color: #fff;
+  padding: 12px 18px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 12px;
+}
+
+.status-box {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid #dde3f0;
+  background: #f8faff;
+}
+
+.hidden {
+  display: none;
+}
+
+.success-text {
+  color: #166534;
+  font-weight: 600;
+}
+
+.error-text {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+
+/* Fix radio text visibility */
+.radio-grid label,
+.radio-row label {
+  color: #16213e;   /* dark readable text */
+  font-weight: 600;
+}
+
+/* Highlight selected option */
+.radio-grid label:has(input:checked),
+.radio-row label:has(input:checked) {
+  background: #eaf0ff;
+  border: 2px solid #2e63e6;
+  color: #16213e;
+}
+
+/* Hover effect (optional but nice) */
+.radio-grid label:hover,
+.radio-row label:hover {
+  background: #f0f4ff;
+  cursor: pointer;
+}
